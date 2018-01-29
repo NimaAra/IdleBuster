@@ -34,6 +34,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Idle_Enable.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Idle_Enable.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Idle_Enable.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
