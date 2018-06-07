@@ -108,10 +108,8 @@
             {
                 _inPeriodMode = TryPromptForDuration(out var duration);
                 
-                var (start, end) = duration;
-                
-                _durationStart = start;
-                _durationEnd = end;
+                _durationStart = duration.Item1;
+                _durationEnd = duration.Item2;
 
                 _periodMenuItem.Checked = _inPeriodMode;
 
@@ -179,7 +177,7 @@
                 return false;
             }
 
-            private static bool TryPromptForDuration(out (TimeSpan, TimeSpan) fromToEnd)
+            private static bool TryPromptForDuration(out Tuple<TimeSpan, TimeSpan> fromToEnd)
             {
                 using (var prompt = new Form
                 {
@@ -263,11 +261,12 @@
 
                     if (prompt.ShowDialog() == DialogResult.OK)
                     {
-                        fromToEnd = (startPicker.Value.TimeOfDay, endPicker.Value.TimeOfDay);
+                        fromToEnd = new Tuple<TimeSpan, TimeSpan>(
+                            startPicker.Value.TimeOfDay, endPicker.Value.TimeOfDay);
                         return true;
                     }
 
-                    fromToEnd = (TimeSpan.MinValue, TimeSpan.MinValue);
+                    fromToEnd = new Tuple<TimeSpan, TimeSpan>(TimeSpan.MinValue, TimeSpan.MinValue);
                     return false;
                 }
             }
